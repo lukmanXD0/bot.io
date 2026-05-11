@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Net VIP - DNS & VPN ML Unlimited</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>082324350163
+        :root {
+            --primary: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            --success: linear-gradient(45deg, #11998e 0%, #38ef7d 100%);
+            --danger: linear-gradient(45deg, #ff416c 0%, #ff4b2b 100%);
+            --warning: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            --dark: rgba(255,255,255,0.05);
+            --glass: rgba(255,255,255,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at 20% 80%, rgba(120,119,198,.3) 0%, transparent 50%), 
+                        radial-gradient(circle at 80% 20%, rgba(255,119,198,.3) 0%, transparent 50%), 
+                        radial-gradient(circle at 0% 50%, rgba(120,219,255,.3) 0%, transparent 50%), 
+                        #0a0a23;
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #a8e6cf, #ffd93d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 0 40px rgba(255,107,107,0.5);
+        }
+
+        .tagline {
+            color: #b0b3b8;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: none;
+        }
+
+        .nav-tabs.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-item {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-item:hover::before {
+            left: 100%;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            transform: translateY(-5px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(78,205,196,0.4);
+            background: rgba(78,205,196,0.15);
+        }
+
+        .nav-icon { font-size: 1.4em; display: block; margin-bottom: 5px; }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Login Form */
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 30px rgba(78,205,196,0.4);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .form-input::placeholder {
+            color: #888;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--success);
+            color: #fff;
+            box-shadow: 0 20px 40px rgba(17,153,142,0.4);
+        }
+
+        .btn-secondary {
+            background: var(--danger);
+            color: #fff;
+            box-shadow: 0 20px 40px rgba(255,65,108,0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(78,205,196,0.6);
+        }
+
+        /* VPN Generator */
+        .vpn-generator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .vpn-card {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(78,205,196,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .vpn-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #4ecdc4;
+            box-shadow: 0 30px 60px rgba(78,205,196,0.5);
+        }
+
+        .vpn-flag {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .vpn-server {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #4ecdc4, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .config-box {
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            text-align: left;
+            border-left: 4px solid #4ecdc4;
+            word-break: break-all;
+        }
+
+        .config-line {
+            margin: 8px 0;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Status & Expired */
+        .status-card {
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .status-success {
+            background: rgba(17,153,142,0.2);
+            border: 2px solid rgba(17,153,142,0.5);
+            color: #38ef7d;
+        }
+
+        .status-expired {
+            background: rgba(255,65,108,0.3);
+            border: 3px solid rgba(255,65,108,0.8);
+            animation: pulseWarning 2s infinite;
+        }
+
+        @keyframes pulseWarning {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,65,108,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,65,108,0.8); }
+        }
+
+        /* Info Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #4ecdc4, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Author */
+        .author-profile {
+            background: linear-gradient(135deg, rgba(255,193,7,0.2), rgba(255,152,0,0.2));
+            border: 2px solid rgba(255,193,7,0.6);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .author-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+
+        .hidden { display: none !important; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            .content-section { padding: 25px 20px; }
+            .vpn-generator { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-ghost"></i> DK MOBILE LEGENDS DNS
+            </div>
+            <div class="tagline">
+ </div>
+        </div>
+
+        <!-- Login -->
+        <div id="loginSection">
+            <div class="content-section login-form">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">
+                    <i class="fas fa-sign-in-alt"></i> Login Member
+                </h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" class="form-input" id="username" placeholder="admin / mlvip / bot2024" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" class="form-input" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Masuk Panel
+                    </button>
+                </form>
+                <div id="loginStatus"></div>
+            </div>
+        </div>
+        <!-- Navigation -->
+        <div id="navTabs" class="nav-tabs">
+            <div class="nav-grid">
+                <div class="nav-item active" data-tab="dns">
+                    <i class="nav-icon fas fa-globe"></i>
+                    DNS Gen
+                </div>
+                <div class="nav-item" data-tab="vpn">
+                    <i class="nav-icon fas fa-shield-alt"></i>
+                    VPN ML
+                </div>
+                <div class="nav-item" data-tab="info">
+                    <i class="nav-icon fas fa-info-circle"></i>
+                    Info
+                </div>
+                <div class="nav-item" data-tab="author">
+                    <i class="nav-icon fas fa-user-tie"></i>
+                    Author
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" style="display: none;">
+            <!-- DNS Section -->
+            <div id="dnsTab" class="content-section">
+                <h2 class="section-title"><i class="fas fa-globe-asia"></i> 🇮🇩 DNS GENERATOR 🇮🇩</h2>
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                    <div style="font-size: 1.1rem; font-weight: 600;">Status Akun: <span id="accountStatus" style="color: #4ecdc4;">Aktif</span></div>
+                    <div>Expire: <span id="expiryDate" style="font-weight: 600;"></span></div>
+                </div>
+
+                <div id="dnsGenerator">
+                    <div id="dnsCard" style="display: none; text-align: center; padding: 30px; background: rgba(17,153,142,0.15); border-radius: 20px; border: 2px solid #38ef7d;">
+                        <div style="font-size: 1.3rem; margin-bottom: 20px;">✅ DNS Premium Anda:</div>
+                        <div id="dnsId" class="config-box" style="font-size: 16px; font-weight: 600; background: rgba(0,0,0,0.7);"></div>
+                        <button class="btn btn-primary" onclick="copyDNS()" style="max-width: 250px; margin: 0 auto;">
+                            <i class="fas fa-copy"></i> Copy DNS
+                        </button>
+                    </div>
+
+                    <div id="expiredDNS" class="status-card status-expired" style="display: none;">
+                        <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 20px; color: #ff4b2b;"></i>
+                        <h3>⚠️ AKUN EXPIRED</h3>
+                        <p style="margin: 15px 0; font-size: 1.1rem;">Masa aktif DNS sudah habis</p>
+                        <button class="btn btn-secondary" onclick="openBuyModal()">
+                            <i class="fab fa-whatsapp"></i> Beli Premium Sekarang
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="generateDNS()" style="max-width: 300px; margin: 0 auto; display: block;">
+                        <i class="fas fa-sync-alt"></i> Generate DNS Baru
+                    </button>
+                </div>
+
+                <div id="dnsStatus" class="status-card" style="margin-top: 25px;"></div>
+            </div>
+
+            <!-- VPN Generator -->
+            <div id="vpnTab" class="content-section hidden">
+                <h2 class="section-title"><i class="fas fa-shield-alt"></i> VPN ML Bot Generator</h2>
+                <p style="color: #b0b3b8; margin-bottom: 30px; font-size: 1.1rem;">
+                    Generate config VPN khusus Mobile Legends Kamboja & Myanmar. 
+                    <strong>Connect sempurna ke semua APK VPN!</strong>
+                </p>
+
+                <div class="vpn-generator">
+                    <div class="vpn-card" onclick="generateVPNConfig('khm')">
+                        <div class="vpn-flag">🇰🇭</div>
+                        <div class="vpn-server">Kamboja ML Bot</div>
+                        <div style="color: #b0b3b8; margin-bottom: 20px;"></div>
+                        <div class="config-box" id="configKHM">
+                            Klik untuk generate config...
+                        </div>
+                    </div>
+
+                    <div class="vpn-card" onclick="generateVPNConfig('mmr')">
+                        <div class="vpn-flag">🇲🇲</div>
+                        <div class="vpn-server">Myanmar ML Bot</div>
+                        <div style="color: #b0b3b8; margin-bottom: 20px;"></div>
+                        <div class="config-box" id="configMMR">
+                            Klik untuk generate config...
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0,0,0,0.4); padding: 25px; border-radius: 20px; margin-top: 30px; text-align: center;">
+                    <h4 style="margin-bottom: 15px;"><i class="fas fa-mobile-alt"></i> Cara Connect APK VPN:</h4>
+                    <ol style="text-align: left; max-width: 500px; margin: 0 auto; color: #b0b3b8; font-size: 14px;">
+                        <li>Copy config di atas</li>
+                        <li>Buka HTTP Injector / KPN Tunnel</li>
+                        <li>Paste config → Start</li>
+                        <li>Open ML → Auto connect!</li>
+                    </ol>
+                </div>
+
+                <div id="vpnStatus" class="status-card" style="margin-top: 25px;"></div>
+            </div>
+
+            <!-- Info Section -->
+            <div id="infoTab" class="content-section hidden">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> Informasi Member</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-infinity"></i></div>
+                        <h4>Unlimited Bandwidth</h4>
+                        <p style="color: #b0b3b8;">Tanpa FUP, speed full tergantung jaringan</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>Server Premium</h4>
+                        <p style="color: #b0b3b8;">Kamboja & Myanmar dedicated server</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>100% Anti Detect</h4>
+                        <p style="color: #b0b3b8;">Safe dari ban Moonton</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <h4>24 Jam Aktif</h4>
+                        <p style="color: #b0b3b8;">Auto expire setelah 7 hari</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; padding: 25px; background: rgba(78,205,196,0.15); border-radius: 20px; border-left: 5px solid #4ecdc4;">
+                    <h4 style="margin-bottom: 15px;"><i class="fas fa-exclamation-triangle"></i> ⚠️ PENTING!</h4>
+                    <p style="color: #b0b3b8; line-height: 1.7;">
+                        - Jangan share akun ke orang lain<br>
+                        - Gunakan 1 device per akun<br>
+                        - Restart HP setelah 12 jam connect<br>
+                        - Support semua operator 4G/5G
+                         
+                        ======================================
+                         WEB INI UNTUK MENDAPATKAN MUSUH BOT
+                         GAME MOBILE LEGENDS DENGAN MUDAH
+                         MENGGUNAKAN DNS GENERATOR UNTUK DI RANCANG VIP
+                         TANPA DETECK OLEH SISTEM MONNTON 
+                        ======================================
+                    </p>
+                </div>
+            </div>
+
+            <!-- Author -->
+            <div id="authorTab" class="content-section hidden">
+                <h2 class="section-title"><i class="fas fa-user-tie"></i> Author & Support</h2>
+                
+                <div class="author-profile">
+                    <div class="author-avatar">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3 style="margin-bottom: 10px;">Phantom Master</h3>
+                    <div style="font-size: 1.3rem; color: #ffd700; margin-bottom: 20px;">⭐⭐⭐⭐⭐ Premium Seller</div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                        <a href="https://wa.me/6282324350163?text=Halo%20Phantom,%20saya%20${currentUser}%20mau%20tanya%20tentang%20VPN%20ML" 
+                           class="btn btn-primary" target="_blank" style="padding: 18px;">
+                            <i class="fab fa-whatsapp"></i> Chat Support
+                        </a>
+                        <button class="btn btn-secondary" onclick="openBuyModal()" style="padding: 18px;">
+                            <i class="fas fa-shopping-cart"></i> Beli Premium
+                        </button>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.4); padding: 25px; border-radius: 18px; font-size: 14px;">
+                        <div><i class="fas fa-phone"></i> WA: <strong>
+
+
+</strong></div>
+                        <div><i class="fas fa-money-bill-wave"></i> Payment: Dana • OVO • Gopay • LinkAja</div>
+                        <div><i class="fas fa-clock"></i> Response: <strong>24/7</strong></div>
+                        <div style="margin-top: 15px; color: #ffd700; font-weight: 600;">
+                            💰 Package: <strong>Rp25.000 / Minggu Unlimited</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Modal -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 25px;"><i class="fas fa-crown"></i> Beli Premium VIP</h3>
+            <div style="background: linear-gradient(135deg, rgba(255,193,7,0.3), rgba(255,152,0,0.3)); 
+                        padding: 30px; border-radius: 20px; margin-bottom: 30px; border: 2px solid #ffd700;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: #ffd700; margin-bottom: 15px;">Rp 25.000</div>
+                <div style="font-size: 1.3rem; font-weight: 600;">1 Minggu Unlimited</div>
+                <div style="color: #b0b3b8; margin-top: 10px;">DNS + VPN ML Kamboja/Myanmar</div>
+            </div>
+            <a href="https://wa.me/6282324350163?text=Halo%20Admin,%20saya%20${currentUser}%20ingin%20beli%20Premium%20Rp25.000%20-%20Username:%20${currentUser}" 
+               class="btn btn-secondary" style="margin-bottom: 15px; padding: 20px;" target="_blank">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </a>
+            <button class="btn btn-primary" onclick="closeBuyModal()" style="padding: 20px;">
+                <i class="fas fa-times"></i> Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Member credentials
+        const members = {
+            'Trial': '1days'
+        };
+
+        let currentUser = null;
+        let currentDNS = '';
+        let expiryTime = null;
+        let activeTab = 'dns';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login handler
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            
+            // Navigation tabs
+            document.querySelectorAll('.nav-item').forEach(tab => {
+                tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+            });
+        });
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const statusEl = document.getElementById('loginStatus');
+
+            if (members[username] && members[username] === password) {
+                currentUser = username;
+                expiryTime = Date.now() + (7* 24* 60 * 60* 1000); // 7 hari
+                showStatus('login', '✅ Selamat datang ' + username + '! Panel berhasil dimuat.', 'success');
+                
+                setTimeout(() => {
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('navTabs').classList.add('show');
+                    document.getElementById('mainContent').style.display = 'block';
+                    updateExpiry();
+                    generateDNS();
+                }, 1500);
+            } else {
+                showStatus('login', '❌ Username atau password salah!', 'expired');
+            }
+        }
+
+        function switchTab(tab) {
+            activeTab = tab;
+            document.querySelectorAll('.nav-item').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            
+            document.querySelectorAll('.content-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(tab + 'Tab').classList.remove('hidden');
+        }
+
+        // DNS Functions
+        function generateDNS() {
+            if (!isActive()) {
+                showExpiredDNS();
+                return;
+            }
+
+            const timestamp = Date.now();
+            const rand1 = Math.floor(1000000000 * Math.random());
+            const rand2 = Math.floor(100000 * Math.random());
+            currentDNS = `supremacy.${timestamp}.${rand1}.${rand2}.phantom-net.vip`;
+
+            document.getElementById('dnsId').textContent = currentDNS;
+            document.getElementById('dnsCard').style.display = 'block';
+            document.getElementById('expiredDNS').style.display = 'none';
+            
+            showStatus('dns', `✅ DNS Premium berhasil digenerate untuk ${currentUser}`, 'success');
+            updateAccountStatus();
+        }
+
+        function copyDNS() {
+            navigator.clipboard.writeText(currentDNS).then(() => {
+                showStatus('dns', '✅ DNS berhasil dicopy ke clipboard!', 'success');
+            });
+        }
+
+        function showExpiredDNS() {
+            document.getElementById('dnsCard').style.display = 'none';
+            document.getElementById('expiredDNS').style.display = 'block';
+            showStatus('dns', '⏰ Akun expired! Beli premium baru via WhatsApp.', 'expired');
+            document.getElementById('accountStatus').textContent = 'EXPIRED';
+            document.getElementById('accountStatus').style.color = '#ff4b2b';
+        }
+
+        // VPN Generator
+        function generateVPNConfig(region) {
+            const configs = {
+                khm: {
+                    server: 'kamboja-ml.phantom-net.vip',
+                    port: '443',
+                    user: `ml_khm_${Date.now()}`,
+                    pass: 'phantomml24',
+                    sniffer: 'mlbb.kh'
+                },
+                mmr: {
+                    server: 'myanmar-ml.phantom-net.vip', 
+                    port: '443',
+                    user: `ml_mmr_${Date.now()}`,
+                    pass: 'botphantom24',
+                    sniffer: 'mlbb.mm'
+                }
+            };
+
+            const config = configs[region];
+            const configText = `tcp://${config.server}:${config.port}
+SSH Host: ${config.server}
+SSH Port: 22
+Username: ${config.user}
+Password: ${config.pass}
+SNI Bug: ${config.sniffer}.com
+Payload: GET / HTTP/1.1[crlf]Host: ${config.sniffer}.com[crlf][crlf]`;
+
+            const targetEl = document.getElementById(`config${region.toUpperCase()}`);
+            targetEl.textContent = configText;
+            
+            showStatus('vpn', `✅ Config ${region.toUpperCase()} berhasil digenerate! Copy dan import ke VPN APK.`, 'success');
+        }
+
+        // Utilities
+        function isActive() {
+            return Date.now() < expiryTime;
+        }
+
+        function updateExpiry() {
+            document.getElementById('expiryDate').textContent = 
+                new Date(expiryTime).toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+        }
+
+        function updateAccountStatus() {
+            document.getElementById('accountStatus').textContent = isActive() ? 'AKTIF' : 'EXPIRED';
+            document.getElementById('accountStatus').style.color = isActive() ? '#4ecdc4' : '#ff4b2b';
+        }
+
+        function showStatus(type, message, status) {
+            const el = document.getElementById(type + 'Status');
+            el.textContent = message;
+            el.className = `status-card status-${status}`;
+        }
+
+        // Modal
+        function openBuyModal() {
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buyModal').style.display = 'none';
+        }
+
+        // Auto expiry check
+        setInterval(() => {
+            if (currentUser) {
+                updateExpiry();
+                updateAccountStatus();
+                if (activeTab === 'dns' && !isActive()) {
+                    showExpiredDNS();
+                }
+            }
+        }, 30000);
+
+        // Close modal on outside click
+        document.getElementById('buyModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBuyModal();
+        });
+    </script>
+</body>
+</html>
